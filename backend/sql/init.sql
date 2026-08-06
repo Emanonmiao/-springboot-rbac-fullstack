@@ -105,9 +105,9 @@ INSERT INTO sys_menu (id, parent_id, menu_name, menu_type, path, component, icon
 
 -- 菜单数据 —— 二级菜单
 INSERT INTO sys_menu (id, parent_id, menu_name, menu_type, path, component, icon, perms, sort_order) VALUES
-(2, 1, '用户管理', 1, 'user', 'system/user/index', 'el-icon-user',     'system:user:list', 1),
-(3, 1, '角色管理', 1, 'role', 'system/role/index', 'el-icon-s-custom', 'system:role:list', 2),
-(4, 1, '菜单管理', 1, 'menu', 'system/menu/index', 'el-icon-menu',     'system:menu:list', 3);
+(2, 1, '用户管理', 1, 'system/user', 'system/user/index', 'el-icon-user',     'system:user:list', 1),
+(3, 1, '角色管理', 1, 'system/role', 'system/role/index', 'el-icon-s-custom', 'system:role:list', 2),
+(4, 1, '菜单管理', 1, 'system/menu', 'system/menu/index', 'el-icon-menu',     'system:menu:list', 3);
 
 -- 三级按钮权限 —— 用户管理
 INSERT INTO sys_menu (id, parent_id, menu_name, menu_type, perms, sort_order) VALUES

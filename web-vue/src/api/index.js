@@ -1,5 +1,8 @@
 import request from './request'
 
+/** 首页统计 */
+export const getDashboardStat = () => request.get('/dashboard/stat')
+
 /** 登录 */
 export const login = data => request.post('/auth/login', data)
 

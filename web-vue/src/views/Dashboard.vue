@@ -38,21 +38,39 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { getDashboardStat } from '@/api'
 
 export default {
   name: 'Dashboard',
   data() {
     return {
       stats: [
-        { label: '用户管理', value: '用户', icon: 'el-icon-user', color: '#409eff' },
-        { label: '角色管理', value: '角色', icon: 'el-icon-s-custom', color: '#67c23a' },
-        { label: '菜单管理', value: '菜单', icon: 'el-icon-menu', color: '#e6a23c' },
-        { label: '登录日志', value: '日志', icon: 'el-icon-document', color: '#f56c6c' }
+        { label: '用户总数', value: '-', icon: 'el-icon-user',       color: '#409eff' },
+        { label: '角色总数', value: '-', icon: 'el-icon-s-custom',   color: '#67c23a' },
+        { label: '菜单总数', value: '-', icon: 'el-icon-menu',       color: '#e6a23c' },
+        { label: '登录日志', value: '-', icon: 'el-icon-document',   color: '#f56c6c' }
       ]
     }
   },
   computed: {
     ...mapGetters(['userInfo', 'roles'])
+  },
+  created() {
+    this.loadStat()
+  },
+  methods: {
+    async loadStat() {
+      try {
+        const res = await getDashboardStat()
+        const d = res.data
+        this.stats[0].value = d.userCount
+        this.stats[1].value = d.roleCount
+        this.stats[2].value = d.menuCount
+        this.stats[3].value = d.logCount
+      } catch (e) {
+        // 加载失败不影响其他功能
+      }
+    }
   }
 }
 </script>
