@@ -76,7 +76,7 @@
 </template>
 
 <script>
-import { listRoles, createRole, updateRole, deleteRole, getRoleMenuIds, listMenuTree } from '@/api'
+import { listRoles, createRole, updateRole, deleteRole, getRoleMenuIds, listMenuTree, assignRoleMenus } from '@/api'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -150,12 +150,10 @@ export default {
       this.assignDialogVisible = true
     },
     async handleAssign() {
-      // 获取所有选中节点（含半选父节点，确保父目录也保存）
       const checkedNodes = this.$refs.menuTree.getCheckedKeys()
       const halfCheckedNodes = this.$refs.menuTree.getHalfCheckedKeys()
       const menuIds = [...checkedNodes, ...halfCheckedNodes]
-      // 调用角色权限分配接口
-      await updateRole({ id: this.currentRoleId, roleName: '', roleCode: '', menuIds })
+      await assignRoleMenus(this.currentRoleId, menuIds)
       this.$message.success('权限分配成功')
       this.assignDialogVisible = false
     }

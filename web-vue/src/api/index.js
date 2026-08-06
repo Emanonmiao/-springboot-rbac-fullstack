@@ -45,6 +45,9 @@ export const deleteRole = id => request.delete(`/role/${id}`)
 /** 查询角色菜单ID */
 export const getRoleMenuIds = id => request.get(`/role/${id}/menuIds`)
 
+/** 分配角色菜单权限 */
+export const assignRoleMenus = (id, menuIds) => request.put(`/role/${id}/menus`, menuIds)
+
 /** 查询全部菜单树 */
 export const listMenuTree = () => request.get('/menu/tree')
 

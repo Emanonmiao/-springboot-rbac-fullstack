@@ -63,4 +63,12 @@ public class RoleController {
     public Result<List<Long>> getMenuIds(@PathVariable Long id) {
         return Result.ok(roleService.getRoleMenuIds(id));
     }
+
+    @ApiOperation("分配角色菜单权限")
+    @PutMapping("/{id}/menus")
+    @PreAuthorize("hasAuthority('system:role:edit')")
+    public Result<?> assignMenus(@PathVariable Long id, @RequestBody List<Long> menuIds) {
+        roleService.assignMenus(id, menuIds);
+        return Result.ok("权限分配成功");
+    }
 }
