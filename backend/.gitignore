@@ -1,0 +1,24 @@
+# 编译输出
+target/
+*.class
+*.jar
+*.war
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+
+# 真实配置文件（禁止提交数据库密码）
+application.yml
+application-dev.yml
+application-prod.yml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Maven
+*.log

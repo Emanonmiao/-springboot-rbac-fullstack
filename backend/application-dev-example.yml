@@ -1,0 +1,41 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/rbac_db?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+# MyBatis-Plus配置
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  type-aliases-package: com.rbac.entity
+  configuration:
+    # 驼峰命名映射
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# JWT配置
+jwt:
+  # HMAC-SHA256密钥，长度>=32字符（256bit）
+  secret: RbacFullStackSecretKey2024ForJwtTokenGeneration
+  # token有效期，单位秒，默认24小时
+  expiration: 86400
+
+# Knife4j接口文档配置
+knife4j:
+  enable: true
+  openapi:
+    title: RBAC权限管理系统 API
+    description: 基于SpringBoot2.7+SpringSecurity的RBAC权限管理全栈系统接口文档
+    version: 1.0.0
+    group:
+      default:
+        api-rule: package
+        api-rule-resources:
+          - com.rbac.controller
