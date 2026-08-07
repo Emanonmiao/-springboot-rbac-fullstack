@@ -143,7 +143,9 @@ export default {
   },
   created() {
     this.loadData()
-    this.loadRoles()
+    if (this.hasPermission('system:role:list')) {
+      this.loadRoles()
+    }
   },
   methods: {
     async loadData() {
